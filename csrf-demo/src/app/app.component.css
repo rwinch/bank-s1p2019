@@ -1,0 +1,16 @@
+body {
+  text-align: center;
+}
+
+.button-container {
+  text-align: center;
+  margin-top: 10%;
+}
+
+.button {
+  border-radius: 4px;
+  padding: 20px;
+  font-size: 32px;
+  cursor: pointer;
+  background-color: yellow;
+}

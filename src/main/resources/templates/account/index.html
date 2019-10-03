@@ -1,0 +1,55 @@
+<!--
+  ~ Copyright 2019 the original author or authors.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      https://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<head>
+    <link rel="stylesheet" href="/css/styles.css">
+    <meta charset="utf-8">
+    <title>Account</title>
+</head>
+<body>
+<h1>Account</h1>
+<p>Welcome <span th:text="${currentUser.firstName}"></span></p>
+<p>Your balance is <span th:text="${#numbers.formatCurrency(account.balance)}"></span></p>
+<h2>Transfer Requests</h2>
+<div>
+    <a th:href="@{/account/request}" class="button">Request Money</a>
+</div>
+<h2>Requested Money</h2>
+<table border="1">
+    <thead>
+        <tr>
+            <th>From</th>
+            <th>Amount</th>
+            <th>Description</th>
+            <th>Approve</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="request : ${transfers}">
+            <td th:text="${request.transferTo.owner.email}"></td>
+            <td th:text="${#numbers.formatCurrency(request.amount)}"></td>
+            <td th:text="${request.description}"></td>
+            <td><form th:action="@{/account/request/approve}" method="post"><input type="hidden" name="requestId" th:value="${request.id}"><input type="submit" value="Approve" class="button"></form></td>
+        </tr>
+        <tr th:if="${transfers.empty}">
+            <td colspan="4">No transfer requests</td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>

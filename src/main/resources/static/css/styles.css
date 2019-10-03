@@ -1,0 +1,44 @@
+body {
+    font-family: Helvetica, serif;
+    width: 90%;
+    margin: 0 auto;
+}
+
+h2 {
+    padding-top: 20px;
+}
+
+.button {
+    border-radius: 4px;
+    padding: 10px;
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: initial;
+    background-color: #a9dbd6;
+}
+
+table, td, th {
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 15px;
+}
+
+input[type=text] {
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: initial;
+}

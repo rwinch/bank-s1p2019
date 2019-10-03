@@ -1,0 +1,20 @@
+body {
+  text-align: center;
+}
+
+.fake-button {
+  position: absolute;
+  left: 460px;
+  top: 400px;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid black;
+  z-index: -1;
+  background-color: aquamarine;
+}
+
+iframe {
+  opacity: 0.0000000001;
+  z-index: 1;
+}
