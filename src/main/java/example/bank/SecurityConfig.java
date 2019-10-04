@@ -15,9 +15,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         requests.anyRequest().authenticated()
                 )
                 .formLogin(withDefaults())
-                .httpBasic(withDefaults())
-                .csrf(csrf ->
-                        csrf.disable()
-                );
+                .httpBasic(withDefaults());
     }
 }
