@@ -15,6 +15,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         requests.anyRequest().authenticated()
                 )
                 .formLogin(withDefaults())
-                .httpBasic(withDefaults());
+                .httpBasic(withDefaults())
+                .sessionManagement(sessionManagement ->
+                        sessionManagement
+                                .sessionFixation(sessionFixation ->
+                                        sessionFixation.none()
+                                )
+                );
     }
 }
