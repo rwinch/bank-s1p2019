@@ -4,7 +4,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-import static example.bank.Saml2Configuration.relyingPartyRegistrationRepository;
+import static org.springframework.security.config.Customizer.withDefaults;
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -14,8 +14,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests(requests ->
                         requests.anyRequest().authenticated()
                 )
-                .saml2Login(c ->
-                        c.relyingPartyRegistrationRepository(relyingPartyRegistrationRepository())
-                );
+                .formLogin(withDefaults())
+                .httpBasic(withDefaults());
     }
 }
