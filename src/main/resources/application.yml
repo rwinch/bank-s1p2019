@@ -1,0 +1,27 @@
+spring:
+  security:
+    saml2:
+      relyingparty:
+        registration:
+          boogle:
+            signing:
+              credentials:
+                - private-key-location: "classpath:saml/bank.key"
+                  certificate-location: "classpath:saml/bank.crt"
+            identityprovider:
+              verification:
+                credentials:
+                  - certificate-location: "classpath:saml/boogle-idp-certificate.crt"
+              entity-id: spring.security.saml.idp.id
+              sso-url: http://boogle:8081/sample-idp/saml/idp/SSO/alias/boot-sample-idp
+          some-other-idp:
+            signing:
+              credentials:
+                - private-key-location: "classpath:saml/bank.key"
+                  certificate-location: "classpath:saml/bank.crt"
+            identityprovider:
+              verification:
+                credentials:
+                  - certificate-location: "classpath:saml/boogle-idp-certificate.crt"
+              entity-id: spring.security.saml.idp.id
+              sso-url: http://boogle:8081/sample-idp/saml/idp/SSO/alias/boot-sample-idp
