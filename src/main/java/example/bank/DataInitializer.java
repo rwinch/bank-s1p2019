@@ -49,9 +49,12 @@ public class DataInitializer implements SmartInitializingSingleton {
 				.save(new User(1L, "Ria", "Stein", "ria@example.com", "password"));
 		User rob = this.users
 				.save(new User(2L, "Rob", "Winch", "rob@example.com", "password"));
+		User filip = this.users
+			.save(new User(3L, "Filip", "Hanik", "filip@example.com", "password"));
 
 		Account riaAccount = this.accounts.save(new Account(ria, 1_000_000.00));
 		Account robAccount = this.accounts.save(new Account(rob, 10.00));
+		Account filipAccount = this.accounts.save(new Account(filip, 100.00));
 
 		TransferRequest request = new TransferRequest("I'm broke", robAccount, riaAccount, 100);
 		this.requests.save(request);
