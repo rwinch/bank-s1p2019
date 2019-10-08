@@ -50,7 +50,7 @@ public class DataInitializer implements SmartInitializingSingleton {
 		User rob = this.users
 				.save(new User(2L, "Rob", "Winch", "rob@example.com", "password"));
 		User filip = this.users
-			.save(new User(3L, "Filip", "Hanik", "filip@example.com", "password"));
+			.save(new User(3L, "Filip", "Hanik", "filip@example.com", java.util.UUID.randomUUID().toString()));
 
 		Account riaAccount = this.accounts.save(new Account(ria, 1_000_000.00));
 		Account robAccount = this.accounts.save(new Account(rob, 10.00));

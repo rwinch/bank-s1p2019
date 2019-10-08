@@ -16,9 +16,14 @@
 
 package example.bank.user;
 
+import org.springframework.security.core.AuthenticatedPrincipal;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.saml2.provider.service.authentication.Saml2Authentication;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.SessionAttribute;
+
+import static java.util.Optional.ofNullable;
 
 /**
  * @author Rob Winch
@@ -32,8 +37,14 @@ public class UserControllerAdvice {
 	}
 
 	@ModelAttribute("currentUser")
-	User currentUser(@SessionAttribute(name = "USER", required = false) Long id) {
-		Long currentUserId = id == null ? 1L : id;
-		return this.users.findById(currentUserId).orElse(null);
+	User currentUser(
+		Authentication a,
+		@SessionAttribute(name = "USER", required = false) Long id) {
+		if (a instanceof Saml2Authentication) {
+			AuthenticatedPrincipal principal = (AuthenticatedPrincipal)a.getPrincipal();
+			User user = this.users.findByEmail(principal.getName());
+			return user;
+		}
+		return this.users.findById(ofNullable(id).orElse(1L)).orElse(null);
 	}
 }
